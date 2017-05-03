@@ -4,9 +4,11 @@ use libsrl::cell::Cell;
 
 pub enum StopReason { Win, Fail, Timeout }
 
-pub trait Botfather {
-	fn call(&self, db : &mut Database, target : &Cell);
-	fn assess(&mut self, stop_reason : StopReason, milliseconds : u32);
+pub trait Botfather : Clone {
+	fn call(&self, db: &mut Database, target: &Cell);
+	fn assess(&mut self, stop_reason: StopReason, milliseconds: u32);
 
 	fn to_string(&self) -> String;
+	fn by_string(string: &str) -> Self;
+	fn gen() -> Self;
 }
