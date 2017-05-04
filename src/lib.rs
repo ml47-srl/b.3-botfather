@@ -4,7 +4,7 @@ use libsrl::cell::Cell;
 
 pub enum StopReason { Win, Fail, Timeout }
 
-pub trait Botfather : Clone {
+pub trait Botfather : Clone + Send {
 	fn call(&self, db: &mut Database, target: &Cell);
 	fn assess(&mut self, stop_reason: StopReason, milliseconds: u32);
 
